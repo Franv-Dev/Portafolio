@@ -8,6 +8,7 @@ const skills = [
     { n: "TYPESCRIPT", i: "typescript-original.svg" },
     { n: "JAVA", i: "java-original.svg" },
     { n: "GIT", i: "git-original.svg" },
+    { n: "JIRA", i: "jira-original.svg" }, // Agregado Jira
     { n: "POSTMAN", i: "postman-plain.svg" },
     { n: "JINJA", i: "fa-code" } 
 ];
@@ -15,22 +16,27 @@ const skills = [
 function init() {
     const track = document.getElementById('skills-scroller');
     if (!track) return;
+    
+    // Multiplicamos la lista para asegurar que el scroll infinito no tenga huecos
     const full = [...skills, ...skills, ...skills, ...skills];
     
     full.forEach(s => {
         const div = document.createElement('div');
         div.className = 'scroller-item';
         
+        // Lógica para íconos especiales o carpetas con nombres distintos
         if (s.n === "JINJA") {
-        
+            // Usa FontAwesome para Jinja
             div.innerHTML = `<i class="fas ${s.i}" style="font-size: 20px; color: #a855f7;"></i> <span>${s.n}</span>`;
         } else {
-        
+            // Lógica de carpetas para Devicon
             let folder = s.n.toLowerCase().replace('.', '');
             if (s.n === "TAILWIND") folder = "tailwindcss";
+            
             div.innerHTML = `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${folder}/${s.i}" width="25"> <span>${s.n}</span>`;
         }
         track.appendChild(div);
     });
 }
+
 window.onload = init;

@@ -1,7 +1,6 @@
 :root {
     --purple: #a855f7;
     --dark: #080808;
-    --card-bg: #121212;
 }
 
 html { scroll-behavior: smooth; scroll-padding-top: 90px; }
@@ -10,40 +9,40 @@ body { background-color: var(--dark); color: #efefef; font-family: 'Segoe UI', s
 /* BRILLO DE FONDO */
 .bg-glow {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at 50% 25%, rgba(168, 85, 247, 0.25), transparent 70%);
+    background: radial-gradient(circle at 50% 25%, rgba(168, 85, 247, 0.2), transparent 70%);
     z-index: -1;
 }
 
-/* NAVBAR */
+/* NAVBAR CON BRILLO */
 .navbar {
     position: fixed; top: 0; width: 100%; height: 70px;
     background: rgba(8, 8, 8, 0.85); backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(168, 85, 247, 0.3); z-index: 1000;
+    box-shadow: 0 5px 25px rgba(168, 85, 247, 0.2);
     display: flex; align-items: center;
 }
 .nav-container { max-width: 1100px; width: 100%; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
-.nav-logo { font-size: 1.5rem; font-weight: bold; color: var(--purple); text-shadow: 0 0 15px var(--purple); letter-spacing: 1px; }
+.nav-logo { font-size: 1.5rem; font-weight: bold; color: var(--purple); text-shadow: 0 0 15px var(--purple); }
 .nav-links a { text-decoration: none; color: white; font-size: 0.85rem; text-transform: uppercase; margin-left: 20px; transition: 0.3s; }
 .nav-links a:hover { color: var(--purple); text-shadow: 0 0 10px var(--purple); }
 
+/* TÍTULO NEÓN */
 .hero { padding: 140px 20px 60px; text-align: center; }
 .neon-title { 
     font-size: 4rem; color: var(--purple); 
     text-shadow: 0 0 25px var(--purple), 0 0 50px rgba(168, 85, 247, 0.4); 
     margin-bottom: 30px; 
 }
-
 .about-hero {
     max-width: 850px; margin: 0 auto 30px; background: rgba(168, 85, 247, 0.05);
     padding: 30px; border-radius: 20px; border: 1px solid rgba(168, 85, 247, 0.2); text-align: left;
 }
-
 .social-links a { color: white; font-size: 2.2rem; transition: 0.3s; margin: 0 15px; }
 .social-links a:hover { color: var(--purple); filter: drop-shadow(0 0 10px var(--purple)); transform: translateY(-5px); }
 
 .section-title { border-left: 4px solid var(--purple); padding-left: 15px; margin-bottom: 35px; font-size: 1.6rem; color: white; text-shadow: 0 0 8px rgba(168, 85, 247, 0.3); }
 
-/* CARRUSEL */
+/* CARRUSEL DIFUMINADO */
 .scroller {
     max-width: 1100px; margin: 0 auto 60px; background: rgba(168, 85, 247, 0.1);
     padding: 20px 0; border-top: 1px solid rgba(168, 85, 247, 0.2);
@@ -52,38 +51,55 @@ body { background-color: var(--dark); color: #efefef; font-family: 'Segoe UI', s
     mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
 }
 .scroller-inner { display: flex; gap: 50px; animation: scroll 40s linear infinite; width: max-content; }
-.scroller-item { display: flex; align-items: center; gap: 12px; transition: 0.3s; }
+.scroller-item { display: flex; align-items: center; gap: 12px; }
 .scroller-item:hover { filter: brightness(1.3) drop-shadow(0 0 10px var(--purple)); }
 
 @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
+/* TARJETAS NEÓN Y CONTROL DE IMÁGENES */
 .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+.project-grid, .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
 
-/* GRIDS CORREGIDOS */
-.project-grid, .edu-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-    gap: 30px; 
+.neon-card { 
+    background: #0f0f0f; padding: 0; border-radius: 20px; border: 1px solid #222; 
+    transition: 0.4s; border-left: 4px solid var(--purple); overflow: hidden;
+    display: flex; flex-direction: column;
 }
 
-/* TARJETAS CON BRILLO */
-.neon-card, .edu-card { 
-    background: #0f0f0f; 
-    padding: 30px; 
-    border-radius: 20px; 
-    border: 1px solid #222; 
-    transition: 0.4s; 
-    border-left: 4px solid var(--purple);
-}
-.neon-card:hover, .edu-card:hover { 
-    border-color: var(--purple); 
-    box-shadow: 0 0 35px rgba(168, 85, 247, 0.35); 
-    transform: translateY(-5px); 
+.card-image {
+    width: 100%; height: 250px; background: #000;
+    display: flex; align-items: center; justify-content: center;
+    border-bottom: 1px solid #222;
 }
 
-.badge { color: var(--purple); font-size: 0.7rem; font-weight: bold; border: 1px solid var(--purple); padding: 2px 8px; border-radius: 5px; }
-.btn-neon { display: inline-block; margin-top: 20px; color: var(--purple); text-decoration: none; font-size: 0.85rem; font-weight: bold; border: 1px solid var(--purple); padding: 10px 25px; border-radius: 8px; transition: 0.3s; }
+/* Llenar bordes (Vino y Juego) */
+.card-image img.img-cover {
+    width: 100%; height: 100%; object-fit: cover;
+}
+
+/* Ver logos enteros (Pokedex y Tamago) */
+.card-image img.img-logo {
+    max-width: 90%; max-height: 90%; object-fit: contain;
+}
+
+.card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+
+/* FIX ESTIRAMIENTO AGENCIA Y EDUCACIÓN */
+.agency-card, .edu-card { 
+    background: #0f0f0f; padding: 30px; border-radius: 20px; border: 1px solid #222; 
+    transition: 0.4s; border-left: 4px solid var(--purple); width: 100%; box-sizing: border-box;
+}
+
+.neon-card:hover, .agency-card:hover, .edu-card:hover { 
+    border-color: var(--purple); box-shadow: 0 0 35px rgba(168, 85, 247, 0.4); transform: translateY(-5px); 
+}
+
+.badge { color: var(--purple); font-size: 0.7rem; font-weight: bold; border: 1px solid var(--purple); padding: 2px 8px; border-radius: 5px; margin-bottom: 10px; display: inline-block; width: fit-content; }
+.btn-neon { display: inline-block; margin-top: auto; color: var(--purple); text-decoration: none; font-size: 0.85rem; font-weight: bold; border: 1px solid var(--purple); padding: 10px 25px; border-radius: 8px; transition: 0.3s; text-align: center; }
 .btn-neon:hover { background: var(--purple); color: white; box-shadow: 0 0 15px var(--purple); }
+
+.footer { background: rgba(8, 8, 8, 0.9); padding: 40px 0; text-align: center; border-top: 1px solid rgba(168, 85, 247, 0.2); margin-top: 50px; }
+.footer strong { color: var(--purple); text-shadow: 0 0 10px rgba(168, 85, 247, 0.3); }
 
 @media (max-width: 768px) {
     .nav-links { display: none; }
